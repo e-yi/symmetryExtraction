@@ -39,6 +39,8 @@ long random_at_most(long max) {
 
 int main() {
 
+    printf("dataSource : ./disMat\n");
+
     int samples;
     int subSamples;
     double th;
@@ -54,8 +56,6 @@ int main() {
     int N;
 
     FILE *disFp = fopen("./disMat","r");
-    printf("从./disMat中提取数据...\n");
-
     fscanf(disFp,"%d",&N);
 
     printf("N : %d \n",N);
@@ -75,9 +75,6 @@ int main() {
     }
 
     fclose(disFp);
-
-
-
 
     int a,b,c,d,e,f;
     for (int i = 0; i < samples; ++i) {
