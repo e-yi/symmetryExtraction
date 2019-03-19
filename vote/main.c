@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
-
+#include <float.h>
 
 
 double getDis(int i,int j,int N,double* dis){
@@ -11,8 +11,9 @@ double getDis(int i,int j,int N,double* dis){
 }
 
 int condition(int a,int b,int c,int d, double* dis,int N, double th){
-//    th = 0.01
-//    conditon = lambda a,b,c,d:abs(dis[a][b]-dis[c][d])<th and abs(dis[a][d]-dis[b][c])<th
+    if (a==DBL_MAX||b==DBL_MAX||c==DBL_MAX||d==DBL_MAX){
+        return 0; // false
+    }
     int res =  fabs(getDis(a,b,N,dis)-getDis(c,d,N,dis))<th
             && fabs(getDis(a,d,N,dis)-getDis(b,c,N,dis))<th;
     return res;
@@ -71,7 +72,9 @@ int main() {
     }
 
     for (int l = 0; l < N*N; ++l) {
-        fscanf(disFp,"%lf",&dis[l]);
+        double i;
+        fscanf(disFp,"%lf",&i);
+        dis[l] = i<0?DBL_MAX:i;
     }
 
     fclose(disFp);
