@@ -11,11 +11,15 @@ double getDis(int i,int j,int N,double* dis){
 }
 
 int condition(int a,int b,int c,int d, double* dis,int N, double th){
-    if (a==DBL_MAX||b==DBL_MAX||c==DBL_MAX||d==DBL_MAX){
+    double dis1 = getDis(a,b,N,dis);
+    double dis2 = getDis(c,d,N,dis);
+    double dis3 = getDis(a,d,N,dis);
+    double dis4 = getDis(b,c,N,dis);
+    if (dis1==DBL_MAX||dis2==DBL_MAX||dis3==DBL_MAX||dis4==DBL_MAX){
         return 0; // false
     }
-    int res =  fabs(getDis(a,b,N,dis)-getDis(c,d,N,dis))<th
-            && fabs(getDis(a,d,N,dis)-getDis(b,c,N,dis))<th;
+    int res =  fabs(dis1-dis2)<th
+            && fabs(dis3-dis4)<th;
     return res;
 }
 
